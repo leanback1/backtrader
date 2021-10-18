@@ -12,6 +12,7 @@ from strategies.ATR import AverageTrueRange
 from strategies.SmaCross import SmaCross
 from strategies.DonchianChannelsStr import DonchianChannelsStr
 from strategies.MoneyFlowStr import MoneyFlowStr
+from strategies.RSIStr import RSIStr
 import time
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -23,7 +24,9 @@ strategies = {
     "atr": AverageTrueRange,
     "sma": SmaCross,
     "donchian": DonchianChannelsStr,
-    "mfi": MoneyFlowStr
+    "mfi": MoneyFlowStr,
+    "rsi": RSIStr
+
 }
 
 
@@ -55,6 +58,7 @@ def main():
     cerebro = Cerebro()
     cerebro.broker.setcash(250000)
     cerebro.addsizer(bt.sizers.AllInSizer, percents=90)
+    cerebro.broker.setcommission(commission=0.001)
     # cerebro.addstrategy(MoneyFlowStr)
     cerebro.addstrategy(strategy=strategies[args.strategy])
     cerebro.adddata(bt.feeds.PandasData(dataname=get_data('EQNR.OL')))
