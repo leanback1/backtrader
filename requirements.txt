@@ -1,0 +1,4 @@
+pandas
+pandas_datareader
+backtrader
+matplotlib==3.2.2
